@@ -1,0 +1,8 @@
+# Environment files
+.env
+
+# Backup files
+*.json.backup
+
+# Deployment keys (sensitive!)
+deployment-key.json
