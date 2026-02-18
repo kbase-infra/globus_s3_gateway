@@ -56,7 +56,11 @@ echo ""
 
 # Extract and display endpoint ID
 if [ -f "/gcs-config/deployment-key.json" ]; then
-    ENDPOINT_ID=$(grep -o '"endpoint_id":"[^"]*"' /gcs-config/deployment-key.json | cut -d'"' -f4 || echo "unknown")
+    if command -v jq >/dev/null 2>&1; then
+        ENDPOINT_ID=$(jq -r '.endpoint_id // "unknown"' /gcs-config/deployment-key.json 2>/dev/null || echo "unknown")
+    else
+        ENDPOINT_ID=$(grep -o '"endpoint_id":"[^"]*"' /gcs-config/deployment-key.json | cut -d'"' -f4 || echo "unknown")
+    fi
     echo "Endpoint ID: ${ENDPOINT_ID}"
     echo ""
 fi

@@ -36,7 +36,7 @@ GATEWAY_OUTPUT=$(globus-connect-server storage-gateway create s3 "MinIO Gateway"
 echo "${GATEWAY_OUTPUT}"
 
 # Extract gateway ID from output
-GATEWAY_ID=$(echo "${GATEWAY_OUTPUT}" | grep -oP 'Storage Gateway ID:\s+\K[a-f0-9-]+' || echo "")
+GATEWAY_ID=$(echo "${GATEWAY_OUTPUT}" | grep -oP 'Storage Gateway ID:\s+\K[a-fA-F0-9-]+' || echo "")
 
 if [ -z "${GATEWAY_ID}" ]; then
     echo "ERROR: Failed to extract Storage Gateway ID from output" >&2
@@ -59,7 +59,7 @@ COLLECTION_OUTPUT=$(globus-connect-server collection create \
 echo "${COLLECTION_OUTPUT}"
 
 # Extract collection ID from output
-COLLECTION_ID=$(echo "${COLLECTION_OUTPUT}" | grep -oP 'Collection ID:\s+\K[a-f0-9-]+' || echo "")
+COLLECTION_ID=$(echo "${COLLECTION_OUTPUT}" | grep -oP 'Collection ID:\s+\K[a-fA-F0-9-]+' || echo "")
 
 echo ""
 echo "===================================================================="

@@ -65,7 +65,7 @@ GCSWEB_MONITOR_PID=$!
 
 # Monitor Apache (check if it's still running by looking for its master process)
 while true; do
-    if ! pgrep -f "apache2.*start" > /dev/null && ! pgrep -f "httpd" > /dev/null; then
+    if ! pgrep "apache2" > /dev/null && ! pgrep "httpd" > /dev/null; then
         echo "ERROR: Apache has died" >&2
         exit 1
     fi

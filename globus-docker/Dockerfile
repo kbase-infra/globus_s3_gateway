@@ -9,6 +9,7 @@ RUN apt-get update && apt-get install -y \
     gnupg \
     apt-transport-https \
     ca-certificates \
+    jq \
     && rm -rf /var/lib/apt/lists/*
 
 # Add Globus repository and install globus-connect-server54
